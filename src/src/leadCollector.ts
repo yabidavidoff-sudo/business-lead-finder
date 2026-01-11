@@ -53,6 +53,8 @@ export async function searchBusinesses(
 
   const response = await fetch(url.toString());
   const data = await response.json();
+    if (!data) throw new Error('Invalid API response');
+    
 
   if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
     throw new Error(`Google Places API error: ${data.status} - ${data.error_message || ''}`);
